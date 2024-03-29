@@ -16,7 +16,7 @@ __rf_model = RandomForestClassifier(class_weight='balanced', random_state=random
 __rf_param_grid = {
     'n_estimators': [int(x) for x in np.linspace(start = 5, stop = 15, num = 10)],
     'max_features': ['log2', 'sqrt'],
-    'max_depth': [int(x) for x in np.linspace(0, 10, num = 10)],
+    'max_depth': [int(x) for x in np.linspace(1, 10, num = 10)],
     'min_samples_split': [2, 5, 10],
     'min_samples_leaf': [1, 2, 4]
     }
