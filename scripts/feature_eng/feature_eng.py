@@ -3,6 +3,21 @@ import joblib
 from sklearn.preprocessing import LabelEncoder
 
 def bin_age(C_AGE):
+    """
+    Categorize an individual's age into different age groups.
+
+    Args:
+        C_AGE (int): Age of the individual.
+
+    Returns:
+        str: Age group of the individual. Possible values are 'Young Adult', 'Middle-aged', 'Senior Citizen', or 'Minor'.
+
+    Raises:
+        None
+
+    Example:
+        age_group = bin_age(35)  # Returns 'Middle-aged'
+    """
     if 18 <= C_AGE < 30:
         return 'Young Adult'
     elif 30 <= C_AGE < 60: 
@@ -13,6 +28,22 @@ def bin_age(C_AGE):
         return 'Minor'
     
 def savings_behaviour(MTHCASA, MTHTD):
+    """
+    Determine the savings behavior of an individual based on their monthly cash and time deposits.
+
+    Args:
+        MTHCASA (float): Monthly cash amount.
+        MTHTD (float): Monthly time deposit amount.
+
+    Returns:
+        int: Binary value indicating savings behavior. Returns 1 if both monthly cash and time deposits are greater than 0, otherwise returns 0.
+
+    Raises:
+        None
+
+    Example:
+        savings = savings_behaviour(1000, 500)  # Returns 1
+    """
     if MTHCASA > 0 and MTHTD > 0:
         return 1
     else:
@@ -20,6 +51,21 @@ def savings_behaviour(MTHCASA, MTHTD):
     
 
 def process_data(df):
+    """
+    Process the input DataFrame by performing various data transformations.
+
+    Args:
+        df (DataFrame): Input DataFrame containing the data to be processed.
+
+    Returns:
+        DataFrame: Processed DataFrame with transformed features and added columns.
+
+    Raises:
+        None
+
+    Example:
+        processed_df = process_data(input_df)
+    """
     data = df.copy()
     logging.info('Lower the column names')
     data.columns = [i.lower().strip().replace(" ", "_") for i in data.columns]
@@ -49,6 +95,22 @@ def process_data(df):
 
 
 def impute_cat_columns(df, cat_columns):
+    """
+    Impute missing values in categorical columns of a DataFrame.
+
+    Args:
+        df (DataFrame): Input DataFrame containing the data with missing values.
+        cat_columns (list): List of column names for categorical columns to be imputed.
+
+    Returns:
+        DataFrame: DataFrame with missing values imputed in the specified categorical columns.
+
+    Raises:
+        None
+
+    Example:
+        filled_df = impute_cat_columns(input_df, ['incm_typ', 'other_cat_column'])
+    """
     data = df.copy()
     for column in cat_columns:
         logging.info(f'Impute cat column: {column}')
@@ -60,6 +122,22 @@ def impute_cat_columns(df, cat_columns):
 
 
 def encode_cols(df, cols_to_encode):
+    """
+    Encode categorical columns in a DataFrame using LabelEncoder and save the encoders.
+
+    Args:
+        df (DataFrame): Input DataFrame containing the data to be encoded.
+        cols_to_encode (list): List of column names for categorical columns to be encoded.
+
+    Returns:
+        DataFrame: DataFrame with categorical columns encoded.
+
+    Raises:
+        None
+
+    Example:
+        encoded_df = encode_cols(input_df, ['col1', 'col2'])
+    """
     data = df.copy()
     encoders = {}
     for column in cols_to_encode:
