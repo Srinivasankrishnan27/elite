@@ -1,5 +1,6 @@
 import logging
 import joblib
+import numpy as np
 from sklearn.preprocessing import LabelEncoder
 
 def bin_age(C_AGE):
@@ -91,6 +92,7 @@ def process_data(df):
     logging.info('Clean up home loan and auto loan tag')
     tag_columns = ['hl_tag', 'al_tag']
     data[tag_columns] = data[tag_columns].fillna(value=0)
+    data.replace([np.inf, -np.inf], np.nan, inplace=True)
     return data
 
 
