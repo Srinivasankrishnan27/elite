@@ -76,7 +76,6 @@ def clean_data(df, cat_cols, num_cols, cols_to_encode):
 if __name__ == "__main__":
     setup_logger()
     data = read_data()
-
     x_cols = ['c_edu', 'c_hse', 'incm_typ', 'gn_occ', 'num_prd', 'casatd_cnt', 'mthcasa', 'maxcasa', 'mincasa', 'drvcr', 'mthtd', 'maxtd',\
             'asset_value', 'hl_tag', 'al_tag', 'pur_price_avg','ut_ave', 'maxut', 'n_funds', 'cc_ave', 'max_mth_trn_amt', 'min_mth_trn_amt', \
                 'avg_trn_amt', 'ann_trn_amt', 'ann_n_trx', 'cc_lmt','age_bin', 'wealth_accumulation', 'monthly_txn_frequency', 'credit_utilization',\
