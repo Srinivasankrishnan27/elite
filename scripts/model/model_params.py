@@ -56,6 +56,6 @@ __mlp_param_grid = {
 param_grid = {
     'LogisticRegression' : {'model' : __logistic_model, 'param_grid': __logistic_param_grid},
     'RandomForestClassifier':{'model' : __rf_model, 'param_grid': __rf_param_grid}, 
-    'ExtraTreesClassifier' : {'model' : __tree_clf_model, 'param_grid': __tree_clf_param_grid}, 
+    'ExtraTreesClassifier' : {'model' : __tree_clf_model, 'param_grid': __tree_clf_param_grid},
     'MLPClassifier' : {'model' : __mlp_model, 'param_grid': __mlp_param_grid}
     }
