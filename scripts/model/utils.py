@@ -120,7 +120,7 @@ def evaluate_model(predictions, true_labels, target_names=['NORMAL','AFFLUENT'])
     return accuracy, precision, recall, f1, cm, class_accuracy, summary
 
 
-def plot_roc_curve(y_true, predicted_prob, model_name, save_fig=True):
+def plot_roc_curve(y_true, predicted_prob, model_name, save_fig=True, show_fig=True):
     """
     Plot the Receiver Operating Characteristic (ROC) curve for a binary classification model.
 
@@ -129,6 +129,7 @@ def plot_roc_curve(y_true, predicted_prob, model_name, save_fig=True):
         predicted_prob (array-like): Predicted probabilities for the positive class.
         model_name (str): Name of the model.
         save_fig (bool, optional): Whether to save the plot as a PNG file. Default is True.
+        show_fig (bool, optional): Whether to show the plot. Default is True.
 
     Returns:
         None
@@ -153,7 +154,8 @@ def plot_roc_curve(y_true, predicted_prob, model_name, save_fig=True):
     plt.grid(True)
     if save_fig:
         plt.savefig(f'./model_repo/{model_name}_roc_curve.png')
-    plt.show()
+    if show_fig:
+        plt.show()
 
 
 def get_report(y_true, predicted_prob, model_name):
@@ -197,7 +199,7 @@ def get_report(y_true, predicted_prob, model_name):
     return pd.DataFrame(metrics)
 
 
-def plot_precision_recall_curve(y_true, predicted_prob, model_name):
+def plot_precision_recall_curve(y_true, predicted_prob, model_name, show_fig=True):
     """
     Plot the Precision-Recall curve for a binary classification model.
 
@@ -205,6 +207,7 @@ def plot_precision_recall_curve(y_true, predicted_prob, model_name):
         y_true (array-like): True labels.
         predicted_prob (array-like): Predicted probabilities for the positive class.
         model_name (str): Name of the model.
+        show_fig (bool, optional): Whether to show the plot. Default is True.
 
     Returns:
         None
@@ -222,4 +225,5 @@ def plot_precision_recall_curve(y_true, predicted_prob, model_name):
     trace = go.Scatter(x=recall, y=precision, mode='lines', name='Precision-Recall curve', hoverinfo='text', hovertext=hover_text)
     layout = go.Layout(title=f'Precision-Recall Curve - {model_name}', xaxis=dict(title='Recall'),yaxis=dict(title='Precision'))
     fig = go.Figure(data=[trace], layout=layout)
-    fig.show()
+    if show_fig:
+        fig.show()
